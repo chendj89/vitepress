@@ -5,5 +5,3 @@
  * @param opts.age 年龄
  */
 export function getName(opts: { name: string; age: number }) {}
-
-let myArray: TArrayStringNumber = [["1", 2]];
