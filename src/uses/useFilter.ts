@@ -1,42 +1,33 @@
 /**
- * 过滤文件
- * @param options
- * @returns
+ *
+ * @param id 文件路径
+ * @param opts
+ * @param opts.endsWith 文件结尾
+ * @param opts.include 包含路径
+ * @param opts.exclude 排除路径
+ * @returns boolean 是否需要过滤
  */
-/**
- * @param  {Partial<IFilter>} options
- */
-export default function useFilter(options: Partial<IFilter>) {
-  let defaults: IFilter = {
-    include: [],
-    exclude: ["node_modules"],
-    id: "",
-    endsWith: "",
-  };
-  let opts: IFilter = Object.assign({}, defaults, options);
-  let isAllow = true;
-  // 文件结尾不匹配，直接返回
+export default function useFilter(id: string, opts: TUserOptions): boolean {
+  // 结尾不匹配，返回false
   if (opts.endsWith) {
-    if (!opts.id.endsWith(opts.endsWith)) {
+    if (!id.includes(opts.endsWith)) {
       return false;
     }
   }
-  // 文件在不应该包含的路径中，返回false
-  opts.exclude.map((item) => {
-    if (opts.id.includes(item)) {
-      isAllow = false;
-    }
-  });
-  if (isAllow) {
-    // 文件在允许的路径中
-    if (opts.include.length) {
-      isAllow = false;
-      opts.include.map((item) => {
-        if (opts.id.includes(item)) {
-          isAllow = true;
-        }
-      });
-    }
+  if (opts.include) {
+    // 满足一个即为true
+    let result = opts.include.some((item) => {
+      return id.includes(item);
+    });
+    return result;
   }
-  return isAllow;
+  if (opts.exclude) {
+    // 满足一个即为true
+    let result = opts.exclude.some((item) => {
+      return id.includes(item);
+    });
+    // 取反
+    return !result;
+  }
+  return true;
 }

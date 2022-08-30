@@ -1,8 +1,8 @@
-
 /**
- * @namespace
- * @property {object} opts 参数
- * @property {string} opts.name 用户名
+ * 创建一个去重的`array`数组副本
+ * @param array 要检查的数组
+ * @returns 返回新的去重后的数组
  */
-export function getName(opts:{name:string,age:number}){}
-
+export function useArraysUniq<T>(array: T[]): T[] {
+  return [...new Set(array)];
+}
