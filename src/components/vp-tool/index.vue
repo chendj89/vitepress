@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const props = defineProps<IUser>();
+import useDialog from "../../dialog/useDialog";
+import pop from "./pop.vue";
+useDialog(pop).then((res) => {
+  console.log(res);
+});
 </script>
 <template>
   <div>
