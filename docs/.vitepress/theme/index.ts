@@ -1,7 +1,10 @@
 import DefaultTheme from "vitepress/theme";
-import vpTool from "../../../src/components/vp-tool/index.vue";
-import vpMenu from "../../../src/components/vp-menu/index.vue";
-import vpBtn from "../../../src/components/vp-btn/index.vue";
+// @ts-ignore
+import vpTool from "@/components/vp-tool/index.vue";
+// @ts-ignore
+import vpMenu from "@/components/vp-menu/index.vue";
+// @ts-ignore
+import vpBtn from "@/components/vp-btn/index.vue";
 export default {
   ...DefaultTheme,
   enhanceApp({ app }) {
@@ -10,5 +13,6 @@ export default {
     app.component("vp-tool", vpTool);
     app.component("vp-menu", vpMenu);
     app.component("vp-btn", vpBtn);
+    app.provide("version", "9.0.0");
   },
 };

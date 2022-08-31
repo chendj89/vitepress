@@ -1,10 +1,19 @@
-import { App, createApp, getCurrentInstance, markRaw } from "vue";
-export default function useDialog(file: Component) {
-  let ins: any = getCurrentInstance();
+import {
+  App,
+  createApp,
+  getCurrentInstance,
+  markRaw,
+  defineAsyncComponent,
+} from "vue";
+export default function useDialog(file: any) {
+  const AsyncComp = defineAsyncComponent(() => import(/* @vite-ignore */ file));
+  // @ts-ignore
+  let ins: any = getCurrentInstance() || this;
   return new Promise((resolve, reject) => {
+    // 服务器渲染
     if (typeof document !== "undefined") {
       let container = document.createElement("div");
-      let app: any = createApp(file, {
+      let app: any = createApp(AsyncComp, {
         myVer: "-",
         remove: (result: any = true) => {
           app.unmount();
@@ -22,5 +31,3 @@ export default function useDialog(file: Component) {
     }
   });
 }
-
-// treeToRender.appContext = app._context

@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { getCurrentInstance, useAttrs, onUnmounted } from "@vue/runtime-core";
-
-const ins = getCurrentInstance();
-console.log(ins?.appContext.config.globalProperties.hero);
-
+import {
+  getCurrentInstance,
+  useAttrs,
+  onUnmounted,
+  inject,
+} from "@vue/runtime-core";
+let version = inject("version");
 const attrs: any = useAttrs();
 onUnmounted(() => {
   console.log("销毁");
@@ -18,6 +20,7 @@ const close = () => {
       top--
       <div>
         <vp-btn @click="close"></vp-btn>
+        <div>{{ version }}</div>
       </div>
     </div>
   </div>
