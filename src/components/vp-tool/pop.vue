@@ -12,11 +12,13 @@ const { proxy } = getCurrentInstance() as ComponentInternalInstance;
 onUnmounted(() => {
   console.log("销毁");
 });
+const close = () => {
+  attrs.remove && attrs.remove();
+};
 </script>
 <template>
   <div>
-    <div @click="attrs.remove({ name: '0' })">123</div>
-    <vp-tool></vp-tool>
+    <div @click="close">123</div>
   </div>
 </template>
 
