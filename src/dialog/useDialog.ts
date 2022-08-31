@@ -5,15 +5,14 @@ import {
   markRaw,
   defineAsyncComponent,
 } from "vue";
-export default function useDialog(file: any) {
-  const AsyncComp = defineAsyncComponent(() => import(/* @vite-ignore */ file));
+export default function useDialog(file: Component) {
   // @ts-ignore
   let ins: any = getCurrentInstance() || this;
   return new Promise((resolve, reject) => {
     // 服务器渲染
     if (typeof document !== "undefined") {
       let container = document.createElement("div");
-      let app: any = createApp(AsyncComp, {
+      let app: any = createApp(file, {
         myVer: "-",
         remove: (result: any = true) => {
           app.unmount();

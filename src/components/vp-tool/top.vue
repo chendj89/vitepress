@@ -5,8 +5,13 @@ import {
   onUnmounted,
   inject,
 } from "@vue/runtime-core";
+import ElementPlus from "element-plus";
+import "element-plus/dist/index.css";
 let version = inject("version");
 const attrs: any = useAttrs();
+let ins = getCurrentInstance();
+ins?.appContext.app.use(ElementPlus);
+
 onUnmounted(() => {
   console.log("销毁");
 });
@@ -21,6 +26,7 @@ const close = () => {
       <div>
         <vp-btn @click="close"></vp-btn>
         <div>{{ version }}</div>
+        <el-button>按钮</el-button>
       </div>
     </div>
   </div>

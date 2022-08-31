@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import { getCurrentInstance, inject } from "vue";
+import { getCurrentInstance, inject, defineAsyncComponent } from "vue";
 import useDialog from "@/dialog/useDialog";
 let ins = getCurrentInstance();
 let click = () => {
-  useDialog.call(ins, "../components/vp-tool/top.vue");
+  const AsyncComp = defineAsyncComponent(
+    () => import("@/components/vp-tool/top.vue")
+  );
+
+  useDialog.call(ins, AsyncComp);
 };
 </script>
 <template>
