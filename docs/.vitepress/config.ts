@@ -8,6 +8,7 @@ let alias = {
   "~vitepress": "vitepress/dist/client/theme-default",
 };
 export default defineConfig({
+  base: process.env.NODE_ENV !== "production" ? undefined : "/vitepress/",
   title: "飞翔的鱼",
   vite: {
     resolve: {
