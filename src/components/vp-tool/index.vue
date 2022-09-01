@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { getCurrentInstance, defineAsyncComponent } from "vue";
 import useDialog from "../../dialog/useDialog";
-import vpTop from "./top.vue";
-useDialog(vpTop);
 </script>
 <template>
   <div>
