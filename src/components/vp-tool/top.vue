@@ -13,10 +13,9 @@ let version = inject("version");
 const attrs: any = useAttrs();
 let ins = getCurrentInstance();
 let count = 0;
-onBeforeUnmount(() => {
+onUnmounted(() => {
   console.log("销毁");
 });
-onUnmounted(() => {});
 const close = () => {
   attrs.remove && attrs.remove();
 };
