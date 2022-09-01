@@ -1,20 +1,28 @@
 <script setup lang="ts">
+import { log } from "console";
 import {
   getCurrentInstance,
   useAttrs,
   onUnmounted,
   inject,
-} from "@vue/runtime-core";
+  onMounted,
+  onBeforeUnmount,
+} from "vue";
 import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
+
 let version = inject("version");
 const attrs: any = useAttrs();
 let ins = getCurrentInstance();
 ins?.appContext.app.use(ElementPlus);
-
-onUnmounted(() => {
+let count = 0;
+onMounted(() => {
+  console.log("91");
+});
+onBeforeUnmount(() => {
   console.log("销毁");
 });
+onUnmounted(() => {});
 const close = () => {
   attrs.remove && attrs.remove();
 };

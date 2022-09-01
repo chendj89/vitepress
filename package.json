@@ -6,12 +6,14 @@
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "add": "node cli/index.js"
+    "add": "node cli/index.js",
+    "server": "http-server docs/.vitepress/dist"
   },
   "dependencies": {
     "vue": "^3.2.37"
   },
   "devDependencies": {
+    "@types/node": "^18.7.14",
     "@vitejs/plugin-vue": "^3.0.3",
     "element-plus": "^2.2.15",
     "sass": "^1.54.7",
