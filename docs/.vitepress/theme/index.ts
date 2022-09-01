@@ -10,6 +10,9 @@ export default {
   enhanceApp({ app }) {
     app.config.globalProperties.hero = "1.0.0";
     app.config.globalProperties.$translate = (key: string) => {};
+    console.log(vpBtn);
+    vpBtn.props.bar.default = () => 3;
+
     app.component("vp-tool", vpTool);
     app.component("vp-menu", vpMenu);
     app.component("vp-btn", vpBtn);

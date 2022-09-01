@@ -2,12 +2,12 @@
 import { getCurrentInstance, inject, defineAsyncComponent } from "vue";
 import useDialog from "@/dialog/useDialog";
 let ins = getCurrentInstance();
-let click = () => {
+let click = async () => {
   const AsyncComp = defineAsyncComponent(
     () => import("@/components/vp-tool/top.vue")
   );
-
-  useDialog.call(ins, AsyncComp);
+  let res = await useDialog.call(ins, AsyncComp);
+  console.log(res);
 };
 </script>
 <template>

@@ -8,16 +8,24 @@ import {
   onMounted,
   onBeforeUnmount,
 } from "vue";
-
+import ElementPlus from "element-plus";
+import "element-plus/dist/index.css";
 let version = inject("version");
 const attrs: any = useAttrs();
 let ins = getCurrentInstance();
+if (!ins?.appContext.app._context.components.ElButton) {
+  ins?.appContext.app.use(ElementPlus);
+}
+
 let count = 0;
+onMounted(() => {
+  console.log("91");
+});
 onUnmounted(() => {
   console.log("销毁");
 });
 const close = () => {
-  attrs.remove && attrs.remove();
+  attrs.remove && attrs.remove("来自top的消息");
 };
 </script>
 <template>
@@ -27,6 +35,7 @@ const close = () => {
       <div>
         <vp-btn @click="close"></vp-btn>
         <div>{{ version }}</div>
+        <el-button>按钮</el-button>
       </div>
     </div>
   </div>
