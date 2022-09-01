@@ -25,7 +25,7 @@ export default function useDialog(file: Component) {
       });
       app.appContext = ins.appContext.app._context;
       render(app, container);
-      ins.root.ctx.$el.appendChild(container);
+      document.body.appendChild(container);
     }
   });
 }

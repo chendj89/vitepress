@@ -36,6 +36,7 @@ const close = () => {
         <vp-btn @click="close"></vp-btn>
         <div>{{ version }}</div>
         <el-button>按钮</el-button>
+        <img width="50" src="/xiaochou.jpg" alt="" />
       </div>
     </div>
   </div>
