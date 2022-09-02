@@ -6,8 +6,10 @@ let click = async () => {
   const AsyncComp = defineAsyncComponent(
     () => import("@/components/vp-tool/top.vue")
   );
-  let res = await useDialog.call(ins, AsyncComp);
-  console.log(res);
+  const AsyncComp2 = defineAsyncComponent(
+    () => import("@/components/vp-tool/ele.vue")
+  );
+  let res: any = await useDialog.call(ins, AsyncComp, AsyncComp2);
 };
 </script>
 <template>

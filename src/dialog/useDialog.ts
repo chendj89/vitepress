@@ -6,17 +6,21 @@ import {
   defineAsyncComponent,
   render,
   createVNode,
+  h,
 } from "vue";
-
-export default function useDialog(file: Component) {
+import DialogTsx from "@/components/vp-tool/d";
+export default function useDialog(file: Component, file2: Component) {
   // @ts-ignore
   let ins: any = getCurrentInstance() || this;
   return new Promise((resolve, reject) => {
     // 服务器渲染
     if (typeof document !== "undefined") {
       let container = document.createElement("div");
-      let app: any = createVNode(file);
+      let content = createVNode(file2, {});
+
+      let app: any = createVNode(DialogTsx(content), {});
       app.appContext = ins.appContext.app._context;
+      // content.appContext = app.appContext.app._context;
       app.appContext.$remove = (result: any = true) => {
         render(null, container);
         container.parentNode?.removeChild(container);

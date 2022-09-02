@@ -9,15 +9,9 @@ import {
   onBeforeUnmount,
   ref,
 } from "vue";
-import ElementPlus from "element-plus";
-import "element-plus/dist/index.css";
-import { fa } from "element-plus/es/locale";
 let version = inject("version");
 const attrs: any = useAttrs();
 let ins: any = getCurrentInstance();
-if (!ins?.appContext.app._context.components.ElButton) {
-  ins?.appContext.app.use(ElementPlus);
-}
 
 let props = defineProps(["myVer", "remove"]);
 onUnmounted(() => {
@@ -30,6 +24,10 @@ const close = () => {
 const close2 = () => {
   dialogVisible.value = false;
 };
+defineExpose({
+  close,
+  close2,
+});
 const dialogVisible = ref(true);
 const elRef = ref(null);
 </script>
@@ -37,17 +35,11 @@ const elRef = ref(null);
   <el-dialog
     ref="elRef"
     v-model="dialogVisible"
-    title="Tips"
-    width="30%"
+    title="提示"
+    width="810px"
     @closed="close"
   >
-    <span>This is a message</span>
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button @click="close2">Cancel</el-button>
-        <el-button type="primary" @click="close2">Confirm</el-button>
-      </span>
-    </template>
+    <slot @close="close2" :close="close2"></slot>
   </el-dialog>
 </template>
 <style lang="scss" scoped>
