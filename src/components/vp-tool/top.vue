@@ -7,39 +7,48 @@ import {
   inject,
   onMounted,
   onBeforeUnmount,
+  ref,
 } from "vue";
 import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
+import { fa } from "element-plus/es/locale";
 let version = inject("version");
 const attrs: any = useAttrs();
-let ins = getCurrentInstance();
+let ins: any = getCurrentInstance();
 if (!ins?.appContext.app._context.components.ElButton) {
   ins?.appContext.app.use(ElementPlus);
 }
 
-let count = 0;
-onMounted(() => {
-  console.log("91");
-});
+let props = defineProps(["myVer", "remove"]);
 onUnmounted(() => {
   console.log("销毁");
 });
 const close = () => {
-  attrs.remove && attrs.remove("来自top的消息");
+  dialogVisible.value = false;
+  ins?.appContext.$remove && ins?.appContext.$remove("来自top的消息");
 };
+const close2 = () => {
+  dialogVisible.value = false;
+};
+const dialogVisible = ref(true);
+const elRef = ref(null);
 </script>
 <template>
-  <div class="top">
-    <div>
-      top--
-      <div>
-        <vp-btn @click="close"></vp-btn>
-        <div>{{ version }}</div>
-        <el-button>按钮</el-button>
-        <img width="50" src="/xiaochou.jpg" alt="" />
-      </div>
-    </div>
-  </div>
+  <el-dialog
+    ref="elRef"
+    v-model="dialogVisible"
+    title="Tips"
+    width="30%"
+    @closed="close"
+  >
+    <span>This is a message</span>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="close2">Cancel</el-button>
+        <el-button type="primary" @click="close2">Confirm</el-button>
+      </span>
+    </template>
+  </el-dialog>
 </template>
 <style lang="scss" scoped>
 .top {
