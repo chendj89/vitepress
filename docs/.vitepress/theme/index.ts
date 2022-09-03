@@ -11,6 +11,7 @@ import "element-plus/dist/index.css";
 export default {
   ...DefaultTheme,
   enhanceApp({ app }) {
+    app.use(ElementPlus);
     app.config.globalProperties.hero = "1.0.0";
     app.config.globalProperties.$translate = (key: string) => {};
     vpBtn.props.bar.default = () => 3;
@@ -18,6 +19,5 @@ export default {
     app.component("vp-menu", vpMenu);
     app.component("vp-btn", vpBtn);
     app.provide("version", "9.0.0");
-    app.use(ElementPlus);
   },
 };

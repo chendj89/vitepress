@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { getCurrentInstance, inject, defineAsyncComponent } from "vue";
 import useDialog from "@/dialog/useDialog";
+import DialogTsx from "@/components/vp-tool/d";
 let ins = getCurrentInstance();
 let click = async () => {
   const AsyncComp = defineAsyncComponent(
