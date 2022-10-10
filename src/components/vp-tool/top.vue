@@ -30,16 +30,26 @@ defineExpose({
 });
 const dialogVisible = ref(true);
 const elRef = ref(null);
+const show=ref(false);
+onMounted(()=>{
+  setTimeout(() => {
+    show.value=true;
+  }, 5000);
+});
 </script>
 <template>
   <el-dialog
     ref="elRef"
     v-model="dialogVisible"
-    title="提示"
+    title="提示2"
     width="810px"
     @closed="close"
   >
-    <slot @close="close2" :close="close2"></slot>
+  <div>0000</div>
+    <div v-if="show">
+      <slot @close="close2" :close="close2"></slot>
+      <div id="footer"></div>
+    </div>
   </el-dialog>
 </template>
 <style lang="scss" scoped>

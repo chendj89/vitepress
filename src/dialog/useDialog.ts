@@ -27,6 +27,11 @@ export default function useDialog(file: Component, file2: Component) {
         container.parentNode?.removeChild(container);
         resolve(result);
       };
+      app.appContext.$close = (result: any = true) => {
+        render(null, container);
+        container.parentNode?.removeChild(container);
+        resolve(result);
+      };
       render(app, container);
       document.body.appendChild(container);
     }
