@@ -1,5 +1,4 @@
 import { defineConfig } from "vitepress";
-import { splitVendorChunkPlugin } from "vite";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import path from "path";
 let alias = {
@@ -17,10 +16,6 @@ export default defineConfig({
     resolve: {
       alias: alias,
     },
-    plugins: [vueJsx(), splitVendorChunkPlugin()],
-    build: {
-      cssCodeSplit: false,
-      polyfillModulePreload: false,
-    },
+    plugins: [vueJsx()],
   },
 });

@@ -8,9 +8,8 @@ import {
   createVNode,
   h,
 } from "vue";
-import DialogTsx from "@/components/vp-tool/d";
 import DialogTsx2 from "@/components/vp-tool/s1.vue";
-export default function useDialog(file: any, file2: any,options?:any) {
+export default function useDialog(file2: any, options?: any) {
   // @ts-ignore
   let ins: any = getCurrentInstance() || this;
   return new Promise((resolve, reject) => {
@@ -19,7 +18,7 @@ export default function useDialog(file: any, file2: any,options?:any) {
       let container = document.createElement("div");
       // let content = createVNode(file2, {});
 
-      let app: any = createVNode(DialogTsx2, { com: file2,options });
+      let app: any = createVNode(DialogTsx2, { com: file2, options });
       app.appContext = ins.appContext.app._context;
       // content.appContext = app.appContext.app._context;
       app.appContext.$remove = (result: any = true) => {

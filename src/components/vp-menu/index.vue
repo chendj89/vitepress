@@ -4,13 +4,10 @@ import useDialog from "@/dialog/useDialog";
 import DialogTsx from "@/components/vp-tool/d";
 let ins = getCurrentInstance();
 let click = async () => {
-  const AsyncComp = defineAsyncComponent(
-    () => import("@/components/vp-tool/top.vue")
-  );
   const AsyncComp2 = defineAsyncComponent(
     () => import("@/components/vp-tool/ele.vue")
   );
-  let res: any = await useDialog.call(ins, AsyncComp, AsyncComp2);
+  let res: any = await useDialog.call(ins,AsyncComp2);
   console.log(res)
 };
 </script>
