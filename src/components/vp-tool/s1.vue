@@ -9,7 +9,7 @@
     <template #header>
       <div id="header"></div>
     </template>
-    <component :is="props.com" v-on="postHandler"></component>
+    <component :is="props.com" v-on="postHandler" v-bind="toCom"></component>
     <template #footer>
       <div id="footer" class="dialog-footer">
         <el-button @click="close">Cancel</el-button>
@@ -27,6 +27,10 @@ let props = defineProps(["com","options"]);
 let dialogOption=Object.assign({
   width:"600px"
 },props.options)
+
+const toCom={
+  icon:"icon-1"
+};
 
 let result:any=null;
 const postHandler = {
