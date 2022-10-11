@@ -2,12 +2,13 @@
 import { log } from "console";
 import { getCurrentInstance, inject, onMounted } from "vue";
 let ins = getCurrentInstance();
-const emit = defineEmits(["change", "close"]);
-const success = () => {
-  console.log(ins?.parent);
+const emit = defineEmits(["success", "close"]);
+const close = () => {
   emit("close", "ele的参数");
 };
-console.log(ins);
+const success = () => {
+  emit("success", "ele的参数-成功参数");
+};
 
 let version = inject("version");
 </script>
@@ -18,11 +19,11 @@ let version = inject("version");
   </template> -->
   <div>
     <div>222</div>
-    <el-button @click="success">按钮888</el-button>
+    <el-button @click="close">按钮888</el-button>
   </div>
   <Teleport to="#footer">
-    <div>穿梭</div>
-    <el-button @click="success">关闭</el-button>
+    <el-button @click="close">取消</el-button>
+    <el-button type="primary" @click="success">确定</el-button>
   </Teleport>
   <Teleport to="#header">
     <div>我是ele的标题</div>

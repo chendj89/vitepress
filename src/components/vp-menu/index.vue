@@ -11,6 +11,7 @@ let click = async () => {
     () => import("@/components/vp-tool/ele.vue")
   );
   let res: any = await useDialog.call(ins, AsyncComp, AsyncComp2);
+  console.log(res)
 };
 </script>
 <template>

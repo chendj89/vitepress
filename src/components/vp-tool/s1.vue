@@ -4,13 +4,17 @@
     title="自定义弹窗"
     @close="close"
     @closed="closed"
+    :width="dialogOption.width"
   >
     <template #header>
       <div id="header"></div>
     </template>
-    <component :is="props.com" @close="close"></component>
+    <component :is="props.com" v-on="postHandler"></component>
     <template #footer>
-      <div id="footer"></div>
+      <div id="footer" class="dialog-footer">
+        <el-button @click="close">Cancel</el-button>
+        <el-button type="primary" @click="close">Confirm</el-button>
+      </div>
     </template>
   </el-dialog>
 </template>
@@ -19,16 +23,27 @@
 import { getCurrentInstance, ref } from "vue";
 const ins = getCurrentInstance();
 let visible = ref(true);
-let props = defineProps(["com"]);
+let props = defineProps(["com","options"]);
+let dialogOption=Object.assign({
+  width:"600px"
+},props.options)
+
+let result:any=null;
 const postHandler = {
-  close() {},
+  close: () => {
+    close();
+  },
+  success:(_result?:any)=>{
+    close();
+    result=_result;
+  }
 };
 const close = () => {
   visible.value = false;
 };
+
 const closed = () => {
-  ins?.appContext?.$remove();
-  console.log("s1 关闭");
+  ins?.appContext?.$remove(result);
 };
 </script>
 
